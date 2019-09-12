@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ShopFilip.Models.Product>
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>@ViewData["Genre"]</h2>
+
+@foreach (var item in Model)
+{
+    <div class="productThumbnailContainer col-sm-4" data-productid="@item.Id">
+        <div class="image">
+            <a href="@Url.Action("Product", "Product", new { id = item.Id })">
+                <img src="~/images/mały.jpg" class="img-rounded , img-responsive center-block" alt="Cinque Terre" width="304" height="236">
+                <div class="overlay">
+                    <div class="info">Get more info</div>
+                </div>
+            </a>
+        </div>
+        <h5 class="text-center">Cena: @item.Price</h5>
+        <a href="@Url.Action("Product", "Product", new { id = item.Id })" class="btn buy">BUY</a>
+    </div>
+}

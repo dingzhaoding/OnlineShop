@@ -1,0 +1,55 @@
+﻿@using ShopFilip.IdentityModels
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@model ShopFilip.Models.Register
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Buy";
+}
+<html>
+<head>
+</head>
+<body>
+
+    <h3>Cart Page</h3>
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>Option</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub Total</th>
+        </tr>
+        @foreach (var item in ViewBag.cart)
+        {
+            <tr>
+                <td><a asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.Id">Remove</a></td>
+                <td>@item.Product.Id</td>
+                <td>@item.Product.Name</td>
+                <td>@item.Product.Price</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Product.Price * item.Quantity)</td>
+            </tr>
+        }
+        <tr>
+            <td align="right" colspan="6">Sum</td>
+            <td>
+                @ViewBag.total
+            </td>
+        </tr>
+    </table>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form method="get" asp-controller="Cart" asp-action="myAction">
+            <input type="hidden" name="Price" value="@ViewBag.total" />
+            <input type="hidden" name="Id" value="@UserManager.GetUserId(User)" />
+            <input type="submit" value="Buy" />
+        </form>
+    }
+    <br>
+    <a asp-controller="home" asp-action="MainPage">Continue Shopping</a>
+</body>
+</html>

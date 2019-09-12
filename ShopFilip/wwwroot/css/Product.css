@@ -1,0 +1,220 @@
+﻿body {
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: #222;
+}
+
+.gallery-first {
+    justify-content: center;
+    height: 55vh;
+}
+
+section {
+    display: flex;
+    height: 80vh;
+}
+
+.gallery {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+    width: 50%;
+    height: 78.7vh;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    color: aliceblue;
+    border-left: 1px solid #080808;
+    border-right: 1px solid #080808;
+    border-bottom: 1px solid #080808;
+}
+
+.preview {
+    display: flex;
+    border: 2px solid #ffcccc;
+}
+
+    .preview img {
+        height: 23.3vh;
+        flex-grow: 1;
+        opacity: 0.6;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+img.room-active {
+    opacity: 1;
+}
+
+.dropdown-toggle {
+    color: black;
+}
+
+.dropdown-menu {
+    min-width: 80px;
+    text-align: center;
+}
+
+.dropdown-item {
+    line-height: 1.5;
+    color: black;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a: hover {
+    background: #ffffff;
+    text-decoration: none;
+}
+
+a.tabela span {
+    display: none;
+    padding: 2px 3px;
+    margin-left: 8px;
+    width: 500px;
+    height: 500px;
+}
+
+img {
+    border: none;
+}
+
+a.tabela:hover span {
+    display: inline;
+    position: absolute;
+    margin: 15px 0 0 5px;
+    background: #dddddd;
+    border: 1px solid black;
+    color: #000000;
+    text-align: center;
+    z-index: 2;
+}
+
+.zdj_jak_mierz {
+    height: 50px;
+}
+
+.punktor {
+    list-style-type: circle;
+}
+
+h1 {
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    left: auto;
+}
+
+.row {
+    width: 50%;
+}
+
+.podobne {
+    font-size: 36px;
+    text-align: center;
+}
+
+h2 {
+    text-align: left;
+    position: absolute;
+    left: 12px;
+    top: 80px;
+}
+
+.tabela1 {
+    width: 100%;
+    border: 2px solid white;
+}
+
+body {
+    padding-top: 20px;
+}
+
+.carousel {
+    position: relative;
+}
+
+.carousel-indicators {
+    position: absolute;
+    top: 385px;
+    left: 300px;
+    height: 105px;
+    width: 100%;
+}
+
+/////////////////////////////////////////////////////////
+.carousel-indicators li {
+    text-indent: 0;
+    display: inherit;
+    float: left;
+    width: 10%;
+    height: 100px;
+    margin: 5px 0px;
+}
+
+.carousel-indicators li img {
+    width: 95%;
+    height: 100px;
+    border: 2px solid #CCCCCC;
+    padding: 2px;
+}
+
+.carousel-indicators .active img {
+    border: 2px solid #04BEF5;
+}
+
+.carousel-indicators .active {
+    margin: 5px 0px;
+    width: 10%;
+    height: 100px;
+}
+
+.carousel-control.right,
+.carousel-control.left {
+    background-image: none;
+}
+
+@media screen and (min-width:320px) and (max-width:360px) {
+    .carousel-indicators {
+        top: 115px;
+        left: 95px;
+    }
+
+        .carousel-indicators li img {
+            width: 95%;
+            height: 50px;
+        }
+
+        .carousel-indicators li {
+            width: 20%;
+            height: 50px;
+        }
+
+        .carousel-indicators .active {
+            width: 20%;
+            height: 50px;
+        }
+}
+
+@media screen and (min-width:768px) and (max-width:980px) {
+    .carousel-indicators {
+        top: 240px;
+        left: 213px;
+    }
+}

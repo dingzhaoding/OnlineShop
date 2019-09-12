@@ -1,0 +1,14 @@
+﻿@using ShopFilip.IdentityModels
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@model ShopFilip.Models.Register
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<a asp-action="Edit" asp-route-id="@UserManager.GetUserId(User)">Edit</a> |

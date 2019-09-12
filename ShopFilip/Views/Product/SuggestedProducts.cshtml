@@ -1,0 +1,11 @@
+﻿@using ShopFilip.Models;
+@model List<ProductViewModel>
+
+<div class="container1">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 product-grid">
+            @Html.Partial("~/Views/Product/_ProductThumbnail.cshtml", product)
+        </div>
+    }
+</div>
