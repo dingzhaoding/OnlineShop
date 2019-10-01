@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "WomanMainPage";
+}
+
+<h1>WomanMainPage</h1>
+
+@model IEnumerable<Product>
+<h1>MenMainPAge</h1>
+<link rel="stylesheet" type="text/css" href="~/css/CarouselMainPage.css">
+<div class="container">
+    <br>
+    <br>
+    <div class="row" id="ads">
+        <!-- Category Card -->
+        @foreach (var item in Model)
+        {
+            if (item.Gender == "Woman")
+            {
+                <div class="col-md-4">
+                    <div class="card rounded">
+                        <div class="card-image">
+                            <span class="card-notify-year">Okazja!</span>
+                            @*<span class="card-notify-new">NEW</span>*@
+                            <img class="img-fluid" src="https://drive.google.com/uc?id=@Html.DisplayFor(modelItem => item.Photo)" alt="[Photo]" />
+                        </div>
+                        <div class="card-image-overlay m-auto">
+                            <span class="card-detail-badge">New</span>
+                            <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Price) zł</span>
+                            <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Group)</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="ad-title m-auto">
+                                <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                            </div>
+                            <a href="@Url.Action("Product", "Product", new { id = item.Id })" class="btn buy">KUP TERAZ</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+

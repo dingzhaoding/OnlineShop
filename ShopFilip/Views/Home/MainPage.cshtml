@@ -4,6 +4,7 @@
 @model IEnumerable<Product>
 
 
+
 <link rel="stylesheet" type="text/css" href="~/css/CarouselMainPage.css">
 <div class="container">
     <div id="demo" class="carousel slide" data-ride="carousel">
@@ -18,13 +19,13 @@
         <!-- The slideshow -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="~/Photos/2.jpg"  style=" width:100%; height:50%;">
+                <img src="~/Photos/2.jpg" style=" width:100%; height:50%;">
             </div>
             <div class="carousel-item">
                 <img src="~/Photos/2.jpg" style=" width:100%; height:50%;">
             </div>
             <div class="carousel-item">
-                <img src="~/Photos/2.jpg"  style=" width:100%; height:50%;">
+                <img src="~/Photos/2.jpg" style=" width:100%; height:50%;">
             </div>
         </div>
 
@@ -38,24 +39,35 @@
 
     </div>
 </div>
-<div>
-    @foreach (var item in Model)
-    {
-        if (item.Group == "Spodnie")
+
+<div class="container">
+    <br>
+    <br>
+    <div class="row" id="ads">
+        <!-- Category Card -->
+        @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Group)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <a href="@Url.Action("Product", "Product", new { id = item.Id })" class="btn buy">KUP TERAZ</a>
-            </tr>
+            <div class="col-md-4">
+                <div class="card rounded">
+                    <div class="card-image">
+                        <span class="card-notify-year">Okazja!</span>
+                        @*<span class="card-notify-new">NEW</span>*@
+                        <img class="img-fluid" src="https://drive.google.com/uc?id=@Html.DisplayFor(modelItem => item.Photo)" alt="[Photo]" />
+                    </div>
+                    <div class="card-image-overlay m-auto">
+                        <span class="card-detail-badge">New</span>
+                        <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Price) zł</span>
+                        <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Group)</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="ad-title m-auto">
+                            <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                        </div>
+                        <a href="@Url.Action("Product", "Product", new { id = item.Id })" class="btn buy">KUP TERAZ</a>
+                    </div>
+                </div>
+            </div>
         }
-    }
+    </div>
 </div>
 

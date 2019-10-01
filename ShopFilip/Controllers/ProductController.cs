@@ -24,8 +24,12 @@ namespace OnlineShop.Controllers
         [HttpGet]
         public IActionResult Product(int id)
         {
-            ProductViewModel viewModel = ViewModelFactory.MapProductToViewModel(_context.Products.FirstOrDefault(x => x.Id == id));
-            return View(viewModel);
+            if (id != 0)
+            {
+                ProductViewModel viewModel = ViewModelFactory.MapProductToViewModel(_context.Products.FirstOrDefault(x => x.Id == id));
+                return View(viewModel);
+            }
+            return View();
         }
 
         [HttpPost]
@@ -51,6 +55,18 @@ namespace OnlineShop.Controllers
             }
             ViewData["Genre"] = genre;
             return View(products);
+        }
+
+        [Route("MenMainPage")]
+        public async Task<IActionResult> MenMainPage()
+        {
+            return View(await _context.Products.ToListAsync());
+        }
+
+        [Route("WomanMainPage")]
+        public async Task<IActionResult> WomanMainPage()
+        {
+            return View(await _context.Products.ToListAsync());
         }
     }
 }

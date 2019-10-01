@@ -16,6 +16,7 @@ namespace ShopFilip.Helpers
             public string scope { get; set; }
             public string jti { get; set; }
         }
+
         public class Status
         {
             public string statusCode { get; set; }

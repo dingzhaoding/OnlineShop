@@ -5,9 +5,11 @@
 }
 
 <h1>AddProduct</h1>
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+
+<form method="post" asp-controller="Admin" asp-action="AddProduct">
+
+    <div class="row">
+        <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -24,6 +26,17 @@
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"> </label>
+                <input asp-for="Gender" list="productName" class="form-control" />
+                <datalist id="productName">
+                    <option value="Men">Men</option>
+                    <option value="Woman">Woman</option>
+                </datalist>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Group" class="control-label"></label>
                 <input asp-for="Group" class="form-control" />
@@ -34,9 +47,18 @@
                 <input asp-for="Photo" class="form-control" />
                 <span asp-validation-for="Photo" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <label asp-for="Description" class="control-label">Comment:</label>
+                <textarea asp-for="Description" class="form-control" rows="5" id="comment"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-        </form>
+            @*<a href="~/Views/Admin/AddProduct.cshtml">~/Views/Admin/AddProduct.cshtml</a>*@
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
     </div>
-</div>
+</form>
+

@@ -109,6 +109,8 @@ namespace ShopFilip.Controllers
             return View(productModel);
         }
 
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var productModel = await _context.Products.FindAsync(id);
@@ -116,7 +118,5 @@ namespace ShopFilip.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-
     }
 }

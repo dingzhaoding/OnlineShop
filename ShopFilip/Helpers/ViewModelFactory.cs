@@ -16,6 +16,8 @@ namespace ShopFilip.Helpers
                 Name = model.Name,
                 Price = model.Price,
                 Photo = model.Photo,
+                Gender = model.Gender,
+                Description = model.Description,
             };
             return viewModel;
         }
@@ -29,6 +31,8 @@ namespace ShopFilip.Helpers
                 Name = models.First().Name,
                 Price = models.First().Price,
                 Photo = models.First().Photo,
+                Gender = models.First().Gender,
+                Description = models.First().Description,
             };
             return viewModel;
         }
@@ -41,6 +45,8 @@ namespace ShopFilip.Helpers
                 Name = viewModel.Name,
                 Price = viewModel.Price,
                 Photo = viewModel.Photo,
+                Gender = viewModel.Gender,
+                Description = viewModel.Description,
             };
             return model;
         }
