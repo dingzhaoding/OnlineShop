@@ -141,17 +141,15 @@ h1 {
     }
 
 
-
+.photoContainer {
+    width: 200px;
+    height: 120px;
+}
 /* product image  */
 .product-image {
-    transition: all 0.3s ease-out;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    height: 80%;
-    float: right;
-    display: inline-block;
-    box-shadow: 0 0 8px 8px white inset;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #container img {

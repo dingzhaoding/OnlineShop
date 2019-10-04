@@ -8,7 +8,5 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<a asp-action="Edit" asp-route-id="@UserManager.GetUserId(User)">Edit your Account</a>
 
-<h2>Edit</h2>
-
-<a asp-action="Edit" asp-route-id="@UserManager.GetUserId(User)">Edit</a> |

@@ -27,5 +27,11 @@ namespace ShopFilip.Controllers
         {
             return View();
         }
+
+        [Route("Privacy")]
+        public IActionResult Privacy()
+        {
+            return View();
+        }
     }
 }

@@ -2,41 +2,42 @@
 @{
     ViewBag.Title = "Register";
 }
-<h1>Register</h1>
+<link rel="stylesheet" type="text/css" href="~/css/LoginAndRegister.css">
 
-<form method="post" asp-controller="Account" asp-action="Register">
+<h1 class="MainText">Register</h1>
+<form method="post" asp-controller="Account" asp-action="Register" class="Login">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div>
-        <label asp-for="Username"></label>
-        <input asp-for="Username" />
+        <label asp-for="Username" class="control-label"></label>
+        <input asp-for="Username" class="form-control"  />
         <span asp-validation-for="Username"></span>
     </div>
     <div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name" />
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control"  />
         <span asp-validation-for="Name"></span>
     </div>
     <div>
-        <label asp-for="Surname"></label>
-        <input asp-for="Surname" />
+        <label asp-for="Surname" class="control-label"></label>
+        <input asp-for="Surname" class="form-control" />
         <span asp-validation-for="Surname"></span>
     </div>
     <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email"></span>
     </div>
     <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" />
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" />
         <span asp-validation-for="Password"></span>
     </div>
     <div>
-        <label asp-for="ConfirmPassword"></label>
-        <input asp-for="ConfirmPassword" />
+        <label asp-for="ConfirmPassword" class="control-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
         <span asp-validation-for="ConfirmPassword"></span>
     </div>
-    <div>
-        <input type="submit" value="Register" />
+    <div >
+        <input type="submit" value="Register" class="btn btn-default button" />
     </div>
 </form>
