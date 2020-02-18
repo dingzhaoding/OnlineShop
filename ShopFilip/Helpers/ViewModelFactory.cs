@@ -22,7 +22,6 @@ namespace ShopFilip.Helpers
             return viewModel;
         }
 
-
         public static ProductViewModel MapProductsToViewModel(IEnumerable<Product> models)
         {
             ProductViewModel viewModel = new ProductViewModel()
