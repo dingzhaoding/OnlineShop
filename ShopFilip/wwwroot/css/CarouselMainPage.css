@@ -1,27 +1,21 @@
-﻿/*
-Removes white gap between slides - chagnge to base color of slide images
-*/
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .carousel {
     background: #007aeb;
 }
 
-/*
-Forces image to be 100% width and not max width of 100%
-*/
-.carousel-item .img-fluid {
+/*.carousel-item .img-fluid {
     width: 100%;
-    height: 200px;
-}
+}*/
 
-/* 
-anchors are inline so you need ot make them block to go full width
-*/
 .carousel-item a {
     display: block;
     width: 100%;
-}
-
-body {
 }
 
 .form-container {
@@ -97,13 +91,6 @@ h1 {
     color: darkslategrey;
     font-size: 50px;
 }
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-
-body {
-    font-family: 'Montserrat', sans-serif;
-}
-
 /* Category Ads */
 
 #ads {
@@ -178,37 +165,39 @@ body {
         }
 
 
-    #ads .ad-btn {
-        text-transform: uppercase;
-        width: 150px;
-        height: 40px;
-        border-radius: 80px;
-        font-size: 16px;
-        line-height: 35px;
-        text-align: center;
-        border: 3px solid #e6de08;
-        display: block;
-        text-decoration: none;
-        margin: 20px auto 1px auto;
-        color: #000;
-        overflow: hidden;
-        position: relative;
-        background-color: #e6de08;
-    }
+#ads .ad-btn {
+    text-transform: uppercase;
+    width: 150px;
+    height: 40px;
+    border-radius: 80px;
+    font-size: 16px;
+    line-height: 35px;
+    text-align: center;
+    border: 3px solid #e6de08;
+    display: block;
+    text-decoration: none;
+    margin: 20px auto 1px auto;
+    color: #000;
+    overflow: hidden;
+    position: relative;
+    background-color: #e6de08;
+}
 
-        #ads .ad-btn:hover {
-            background-color: #e6de08;
-            color: #1e1717;
-            border: 2px solid #e6de08;
-            background: transparent;
-            transition: all 0.3s ease;
-            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
-        }
+#ads .ad-btn:hover {
+    background-color: #e6de08;
+    color: #1e1717;
+    border: 2px solid #e6de08;
+    background: transparent;
+    transition: all 0.3s ease;
+    box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+}
 
-    #ads .ad-title h5 {
-        text-transform: uppercase;
-        font-size: 18px;
-    }
+#ads .ad-title h5 {
+    text-transform: uppercase;
+    font-size: 18px;
+}
 
-
-
+.card-image {
+    max-height: 380px;
+    overflow: hidden;
+}

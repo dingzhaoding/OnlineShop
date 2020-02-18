@@ -5,7 +5,6 @@
     <br>
     <br>
     <div class="row" id="ads">
-        <!-- Category Card -->
         @foreach (var item in Model)
         {
             if (item.Gender == "Woman")
@@ -14,7 +13,6 @@
                     <div class="card rounded">
                         <div class="card-image">
                             <span class="card-notify-year">Okazja!</span>
-                            @*<span class="card-notify-new">NEW</span>*@
                             <img class="img-fluid" src="https://drive.google.com/uc?id=@Html.DisplayFor(modelItem => item.Photo)" alt="[Photo]" />
                         </div>
                         <div class="card-image-overlay m-auto">

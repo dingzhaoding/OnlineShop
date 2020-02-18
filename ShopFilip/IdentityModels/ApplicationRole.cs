@@ -9,12 +9,6 @@ namespace ShopFilip.IdentityModels
     public class ApplicationRole: IdentityRole
     {
         public ApplicationRole() : base() { }
-
-        //public ApplicationRole(string roleName) : base(roleName)
-        //{
-
-        //}
-
         public ApplicationRole(string roleName, string description, DateTime creationDate) : base(roleName)
         {
             this.CreationDate = creationDate;

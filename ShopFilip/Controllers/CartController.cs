@@ -19,6 +19,8 @@ namespace OnlineShop.Controllers
     public class CartController : Controller
     {
         private EfDbContext _context;
+        public string accessToken { get; set; }
+        public string Uri { get; set; }
 
         public CartController(EfDbContext context)
         {
@@ -95,15 +97,13 @@ namespace OnlineShop.Controllers
             }
             var userProp = await _context.Users.FindAsync(id);
             
-            await GetAccessTokenAsync();
-            await Order(userProp.Email,Price);
-            Response.Redirect(Uri);
+            await GetAccessTokenAsync(userProp.Id, Price);
+           
             return Redirect(Uri);
         }
-        public string accessToken { get; set; }
+       
 
-        public string Uri { get; set; }
-        public async Task GetAccessTokenAsync()
+        public async Task GetAccessTokenAsync(string id, int Price)
         {
             using (var httpClient = new HttpClient())
             {
@@ -111,14 +111,30 @@ namespace OnlineShop.Controllers
                 {
                     request.Headers.TryAddWithoutValidation("Host", "secure.payu.com");
                     request.Content = new StringContent("grant_type=client_credentials&client_id=145227&client_secret=12f071174cb7eb79d4aac5bc2f07563f", Encoding.UTF8, "application/x-www-form-urlencoded");
-                    var response = await httpClient.SendAsync(request);
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                    var objResponse1 = JsonConvert.DeserializeObject<RootObject2>(jsonString);
-
-                    accessToken = objResponse1.access_token;
+                    try
+                    {
+                        var response = await httpClient.SendAsync(request);
+                        var jsonString = await response.Content.ReadAsStringAsync();
+                        var objResponse1 = JsonConvert.DeserializeObject<RootObject2>(jsonString);
+                        accessToken = objResponse1.access_token;
+                        //await Order(userProp.Email, Price);
+                        Response.Redirect(Uri);
+                    }
+                    catch (Exception)
+                    {
+                        ErrorPage();
+                    }
+                  
                 }
             }
         }
+
+        [Route("ErrorPage")]
+        private IActionResult ErrorPage()
+        {
+            return View();
+        }
+
         public async Task Order(string name,int price)
         {
             string ProperPrice = price.ToString();
@@ -135,7 +151,7 @@ namespace OnlineShop.Controllers
 
                     request.Content = new StringContent("{\n    \"notifyUrl\": \"https://your.eshop.com/notify\",\n    \"customerIp\": " +
                         "\"127.0.0.1\",\n    \"merchantPosId\": \"145227\",\n    \"description\": \"RTV market\",\n   " +
-                        " \"currencyCode\": \"PLN\",\n    \"totalAmount\": \"21000\",\n    \"buyer\": {\n       " +
+                        " \"currencyCode\": \"PLN\",\n    \"totalAmount\": \""+ProperPrice+"\",\n    \"buyer\": {\n       " +
                         " \"email\": \""+name+"\",\n        \"phone\": \"654111654\",\n        \"firstName\": \"John\",\n  " +
                         "      \"lastName\": \"Doe\",\n        \"language\": \"pl\"\n    },\n    \"products\": [\n      " +
                         "  {\n            \"name\": \"Wireless Mouse for Laptop\",\n            \"unitPrice\": \""+ProperPrice+"\",\n    " +
@@ -148,11 +164,8 @@ namespace OnlineShop.Controllers
                     var objResponse1 = JsonConvert.DeserializeObject<RootObject>(jsonString);
 
                     Uri = objResponse1.redirectUri;
-
-
                 }
             }
         }
-
     }
 }

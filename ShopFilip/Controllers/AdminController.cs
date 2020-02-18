@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopFilip.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,10 +14,12 @@ namespace ShopFilip.Controllers
     public class AdminController: Controller
     {
         private EfDbContext _context;
+        private readonly IHostingEnvironment he;
 
-        public AdminController(EfDbContext context)
+        public AdminController(EfDbContext context, IHostingEnvironment e)
         {
             _context = context;
+            he=e;
         }
 
         public async Task<IActionResult> Index()
@@ -28,6 +33,18 @@ namespace ShopFilip.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult ShowFields(string fullName,IFormFile pic)
+        {
+            ViewData["fname"] = fullName;
+            if (pic!=null)
+            {
+                var fileName = Path.Combine(he.WebRootPath+@"\Photos", Path.GetFileName(pic.FileName));
+                pic.CopyTo(new FileStream(fileName, FileMode.Create));
+                ViewData["fileLoaction"] = fileName;
+            }
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddProduct(Product productModel)
@@ -41,7 +58,6 @@ namespace ShopFilip.Controllers
             return View(productModel);
         }
 
-        // GET: AdminAdding/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,6 +103,7 @@ namespace ShopFilip.Controllers
             }
             return View(productModel);
         }
+
         private bool ProductModelExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);

@@ -1,9 +1,7 @@
-﻿body {
-}
-
-.photoInCart {
+﻿.photoInCart {
     width: 100px;
 }
+
 table {
     border-collapse: collapse;
     border-color:white;
@@ -24,6 +22,7 @@ th {
     background-color: #f8f9fa;
     color: #212529;
 }
+
 .title {
     text-align: center;
 }
@@ -45,12 +44,12 @@ th {
     margin: 5px;
 }
 
-    .button:hover {
-        background: linear-gradient(to bottom, #cad3dc 5%, #e3e7eb 100%);
-        background-color: #ced2d7;
-    }
+.button:hover {
+    background: linear-gradient(to bottom, #cad3dc 5%, #e3e7eb 100%);
+    background-color: #ced2d7;
+}
 
-    .button:active {
-        position: relative;
-        top: 1px;
-    }
+.button:active {
+    position: relative;
+    top: 1px;
+}

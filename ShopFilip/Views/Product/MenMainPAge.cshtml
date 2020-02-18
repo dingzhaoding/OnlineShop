@@ -1,38 +1,82 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Men";
 }
 @model IEnumerable<Product>
 <h1>Men</h1>
 <link rel="stylesheet" type="text/css" href="~/css/CarouselMainPage.css">
 <div class="container">
-    <br>
-    <br>
-    <div class="row" id="ads">
-        @foreach (var item in Model)
-        {
-            if (item.Gender == "Men")
-            {
-                <div class="col-md-4">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-year">Okazja!</span>
-                            <img class="img-fluid" src="https://drive.google.com/uc?id=@Html.DisplayFor(modelItem => item.Photo)" alt="[Photo]" />
-                        </div>
-                        <div class="card-image-overlay m-auto">
-                            <span class="card-detail-badge">New</span>
-                            <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Price) zł</span>
-                        </div>
-                        <div class="card-body text-center">
-                            <div class="ad-title m-auto">
-                                <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
-                            </div>
-                            <a href="@Url.Action("Product", "Product", new { id = item.Id })" class="btn buy">KUP TERAZ</a>
+    <div class="panel-heading" role="tab" id="headingOne_1">
+        <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="true" aria-controls="collapseOne_1" class="">
+                Search Filters <i class="material-icons">expand_more</i>
+            </a>
+
+        </h4>
+    </div>
+    <div id="collapseOne_1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="true" style="">
+        <div class="panel-body">
+            <div class="row clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="name1" class="form-control" placeholder="Search by Reg. No.">
                         </div>
                     </div>
                 </div>
-            }
-        }
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>NULL</option>
+                            @foreach (var item in Model)
+                            {
+                                <option> @Html.DisplayFor(modelItem => item.Group)</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                @*<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>NULL</option>
+                                @foreach (var item in Model)
+                                {
+                                    <option> @Html.DisplayFor(modelItem => item.Title)</option>
+                                }
+                            </select>
+                        </div>
+                    </div>*@
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <button type="button" class="btn btn-sm  btn-primary m-t-15 waves-effect"><i class="material-icons">search</i>Search</button>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="row" id="ads">
+    @foreach (var item in Model)
+    {
+        if (item.Gender == "Men")
+        {
+            <div class="col-md-4">
+                <div class="card rounded">
+                    <div class="card-image">
+                        <span class="card-notify-year">Okazja!</span>
+                        <img class="img-fluid" src="https://drive.google.com/uc?id=@Html.DisplayFor(modelItem => item.Photo)" alt="[Photo]" />
+                    </div>
+                    <div class="card-image-overlay m-auto">
+                        <span class="card-detail-badge">New</span>
+                        <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Price) zł</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="ad-title m-auto">
+                            <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                        </div>
+                        <a href="@Url.Action("Product", "Product", new { id = item.Id })" class="btn buy">KUP TERAZ</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
 </div>
 

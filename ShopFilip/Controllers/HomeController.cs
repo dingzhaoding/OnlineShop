@@ -23,6 +23,7 @@ namespace ShopFilip.Controllers
             return View(await _context.Products.ToListAsync());
         }
 
+        [Route("ContactForm")]
         public IActionResult ContactForm()
         {
             return View();

@@ -1,8 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Abel|Aguafina+Script|Artifika|Athiti|Condiment|Dosis|Droid+Serif|Farsan|Gurajada|Josefin+Sans|Lato|Lora|Merriweather|Noto+Serif|Open+Sans+Condensed:300|Playfair+Display|Rasa|Sahitya|Share+Tech|Text+Me+One|Titillium+Web');
 
-body {
-}
-
 h1 {
     color: black;
     text-align: center;
@@ -87,68 +84,68 @@ h1 {
     color: #eee;
     padding: 0;
     margin: 0;
-    width: 120px;
+    width: 140px;
 }
 
-    .btn:hover {
-        transform: translateY(-4px);
-    }
+.btn:hover {
+    transform: translateY(-4px);
+}
 
-    .btn span {
-        font-family: 'Farsan', cursive;
-        transition: transform 0.3s;
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 1.2em;
-        margin: 0;
-    }
-    /* shopping cart icon */
-    .btn .price, .shopping-cart {
-        background: #333;
-        border: 0;
-        margin: 0;
-    }
+.btn span {
+    font-family: 'Farsan', cursive;
+    transition: transform 0.3s;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    margin: 0;
+}
+/* shopping cart icon */
+.btn .price, .shopping-cart {
+    background: #333;
+    border: 0;
+    margin: 0;
+}
 
-    .btn .price {
-        transform: translateX(-50%);
-        padding-right: 15px;
-    }
+.btn .price {
+    transform: translateX(-50%);
+    padding-right: 15px;
+}
 
-    /* the Icon */
-    .btn .shopping-cart {
-        transform: translateX(-100%);
-        position: absolute;
-        background: #333;
-        z-index: 1;
-        left: 0;
-        top: 0;
+/* the Icon */
+.btn .shopping-cart {
+    transform: translateX(-100%);
+    position: absolute;
+    background: #333;
+    z-index: 1;
+    left: 0;
+    top: 0;
 
-    }
+}
 
-    /* buy */
-    .btn .buy {
-        z-index: 3;
-        font-weight: bolder;
-    }
+/* buy */
+.btn .buy {
+    z-index: 3;
+    font-weight: bolder;
+}
 
-    .btn:hover .price {
-        transform: translateX(-80%);
-    }
+.btn:hover .price {
+    transform: translateX(-80%);
+}
 
-    .btn:hover .shopping-cart {
-        transform: translateX(-20%);
-        padding-right: 15px;
-    }
-
+.btn:hover .shopping-cart {
+    transform: translateX(-20%);
+    padding-right: 15px;
+}
 
 .photoContainer {
     width: 200px;
-    height: 120px;
+    height: 500px;
 }
+
 /* product image  */
 .product-image {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 

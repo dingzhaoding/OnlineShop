@@ -2,20 +2,15 @@
     Layout = "_Layout";
 }
 @model IEnumerable<Product>
-
-
-
 <link rel="stylesheet" type="text/css" href="~/css/CarouselMainPage.css">
 <div class="container">
     <div id="demo" class="carousel slide" data-ride="carousel">
 
-        <!-- Indicators -->
         <ul class="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
             <li data-target="#demo" data-slide-to="1"></li>
         </ul>
 
-        <!-- The slideshow -->
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <a asp-area="" asp-controller="Product" asp-action="MenMainPAge"><img src="~/Photos/2 — kopia (2).jpg" style=" width:100%; height:50%;"></a>
@@ -25,33 +20,26 @@
             </div>
         </div>
 
-        <!-- Left and right controls -->
         <a class="carousel-control-prev" href="#demo" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </a>
         <a class="carousel-control-next" href="#demo" data-slide="next">
             <span class="carousel-control-next-icon"></span>
         </a>
-
     </div>
 </div>
-
 <div class="container">
     <br>
-    <br>
     <div class="row" id="ads">
-        <!-- Category Card -->
         @foreach (var item in Model)
         {
             <div class="col-md-4">
                 <div class="card rounded">
                     <div class="card-image">
-                        <span class="card-notify-year">Okazja!</span>
-                        @*<span class="card-notify-new">NEW</span>*@
                         <img class="img-fluid" src="https://drive.google.com/uc?id=@Html.DisplayFor(modelItem => item.Photo)" alt="[Photo]" />
                     </div>
                     <div class="card-image-overlay m-auto">
-                        <span class="card-detail-badge">New</span>
+                        <span class="card-detail-badge">Nowość!</span>
                         <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Price) zł</span>
                         <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Group)</span>
                     </div>

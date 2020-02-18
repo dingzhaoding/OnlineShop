@@ -12,10 +12,12 @@ namespace OnlineShop.Controllers
     public class ProductController : Controller
     {
         private readonly EfDbContext _context;
+
         public ProductController(EfDbContext context)
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
             return View();

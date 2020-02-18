@@ -50,11 +50,11 @@ namespace ShopFilip.Controllers
                     }
                 }
             }
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            foreach (var item in errors)
-            {
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            //foreach (var item in errors)
+            //{
 
-            }
+            //}
             return View();
         }
 
@@ -119,11 +119,11 @@ namespace ShopFilip.Controllers
             ViewBag.Email = user.Email;
             return View();
         }
+        
         public IActionResult ManageAccount()
         {
             return View();
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
@@ -148,30 +148,6 @@ namespace ShopFilip.Controllers
             user.Email = model.Email;
             await _userManager.UpdateAsync(user);
             return RedirectToAction("Index", new { id =id});
-        }
-
-       
-        [HttpGet]
-        public async Task<IActionResult> Buy()
-        {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var productModel = await _context.Users.FindAsync(id);
-            //if (productModel == null)
-            //{
-            //    return NotFound();
-            //}
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Buy(string id)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            await _userManager.UpdateAsync(user);
-            return View();
         }
     }
 }
