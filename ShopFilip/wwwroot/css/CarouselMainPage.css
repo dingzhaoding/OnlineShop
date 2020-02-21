@@ -9,10 +9,16 @@ body {
     background: #007aeb;
 }
 
-/*.carousel-item .img-fluid {
-    width: 100%;
-}*/
-
+#products {
+    display: flex;
+    flex-wrap:wrap;
+}
+#products .card:hover {
+    background: #fff;
+    box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
 .carousel-item a {
     display: block;
     width: 100%;

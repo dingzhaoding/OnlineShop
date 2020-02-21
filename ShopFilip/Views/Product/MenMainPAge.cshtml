@@ -1,82 +1,111 @@
 ﻿@{
-    ViewData["Title"] = "Men";
+    ViewBag.Title = "Product";
 }
-@model IEnumerable<Product>
-<h1>Men</h1>
 <link rel="stylesheet" type="text/css" href="~/css/CarouselMainPage.css">
-<div class="container">
-    <div class="panel-heading" role="tab" id="headingOne_1">
-        <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="true" aria-controls="collapseOne_1" class="">
-                Search Filters <i class="material-icons">expand_more</i>
-            </a>
-
-        </h4>
-    </div>
-    <div id="collapseOne_1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="true" style="">
-        <div class="panel-body">
-            <div class="row clearfix">
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" id="name1" class="form-control" placeholder="Search by Reg. No.">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option>NULL</option>
-                            @foreach (var item in Model)
-                            {
-                                <option> @Html.DisplayFor(modelItem => item.Group)</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                @*<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <select class="form-control">
-                                <option>NULL</option>
-                                @foreach (var item in Model)
-                                {
-                                    <option> @Html.DisplayFor(modelItem => item.Title)</option>
-                                }
-                            </select>
-                        </div>
-                    </div>*@
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <button type="button" class="btn btn-sm  btn-primary m-t-15 waves-effect"><i class="material-icons">search</i>Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<br /><br />
+<b>Search by</b>
+<select id="SearchBy" asp-items="@ViewBag.Employees">
+    <option value="Name">Name</option>
+    <option value="Group">Group</option>
+</select><br /><br />
+@Html.TextBox("Search")<input type="button" id="SearchBtn" value="Search" asp-route-selected="" /><br /><br />
+<div class="container" id="products">
 </div>
+<div id="paged">
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        GetPageData("", "", 1);
+        eventThrottler();
+    });
 
-<div class="row" id="ads">
-    @foreach (var item in Model)
-    {
-        if (item.Gender == "Men")
-        {
-            <div class="col-md-4">
-                <div class="card rounded">
-                    <div class="card-image">
-                        <span class="card-notify-year">Okazja!</span>
-                        <img class="img-fluid" src="https://drive.google.com/uc?id=@Html.DisplayFor(modelItem => item.Photo)" alt="[Photo]" />
-                    </div>
-                    <div class="card-image-overlay m-auto">
-                        <span class="card-detail-badge">New</span>
-                        <span class="card-detail-badge">@Html.DisplayFor(modelItem => item.Price) zł</span>
-                    </div>
-                    <div class="card-body text-center">
-                        <div class="ad-title m-auto">
-                            <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
-                        </div>
-                        <a href="@Url.Action("Product", "Product", new { id = item.Id })" class="btn buy">KUP TERAZ</a>
-                    </div>
-                </div>
-            </div>
-        }
+    $("#SearchBtn").click(function () {
+        GetPageData(1);
+        eventThrottler();
+    });
+
+    function GetPageData(pageNum, pageSize) {
+        $("html, body").animate({ scrollTop: 0 }, 500);
+        setTimeout(function () {
+        var searchBy = $("#SearchBy").val();
+        var searchValue = $("#Search").val();
+        $("#products").empty();
+        $("#paged").empty();
+
+        $.getJSON("/Product/GetPaggedData", { SearchBy: searchBy, SearchValue: searchValue, pageNumber: pageNum, pageSize: pageSize }, function (response) {
+            var rowData = "";
+            for (var i = 0; i < response.data.length; i++) {
+                rowData = rowData + '<div class="col-md-4"> <div class="card rounded"> <div class="card-image" > <img class="img-fluid lazy-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://drive.google.com/uc?id=' + response.data[i].photo +'" alt="" /> </div> <div class="card-image-overlay m-auto"> <span class="card-detail-badge">' + response.data[i].price +' zł</span> </div> <div class="card-body text-center"> <div class="ad-title m-auto"> <h5>' + response.data[i].name +'</h5> </div> <a href="@Url.Action("Product", "Product", new { id= "-1" })" class="btn buy">KUP TERAZ</a> </div> </div></div>';
+                rowData = rowData.replace("-1", response.data[i].id);
+            }
+            $("#products").append(rowData).fadeIn(400);
+            PaggingTemplate(response.totalPages, response.currentPage);
+        })
+        }, 600);
     }
-</div>
 
+    function PaggingTemplate(totalPage, currentPage) {
+        var template = "";
+        var TotalPages = totalPage;
+        var CurrentPage = currentPage;
+        var PageNumberArray = Array();
+
+        var countIncr = 1;
+        for (var i = currentPage; i <= totalPage; i++) {
+            PageNumberArray[0] = currentPage;
+            if (totalPage != currentPage && PageNumberArray[countIncr - 1] != totalPage) {
+                PageNumberArray[countIncr] = i + 1;
+            }
+            countIncr++;
+        };
+        PageNumberArray = PageNumberArray.slice(0, 5);
+        var FirstPage = 1;
+        var LastPage = totalPage;
+        if (totalPage != currentPage) {
+            var ForwardOne = currentPage + 1;
+        }
+        var BackwardOne = 1;
+        if (currentPage > 1) {
+            BackwardOne = currentPage - 1;
+        }
+
+        template = "<p>" + CurrentPage + " of " + TotalPages + " pages</p>"
+        template = template + '<ul class="pager">' +
+            '<li class="previous"><input type="button"  onclick="GetPageData(' + FirstPage + ')" id="filip" value="First"  /></li>' +
+            '<li><select ng-model="pageSize" id="selectedId"><option value="2" selected>2</option><option value="50">50</option><option value="100">100</option><option value="150">150</option></select> </li>' +
+            '<li><a href="#" onclick="GetPageData(' + BackwardOne + ')"><i class="glyphicon glyphicon-backward"></i></a>';
+
+        var numberingLoop = "";
+        for (var i = 0; i < PageNumberArray.length; i++) {
+            numberingLoop = numberingLoop + '<a class="page-number active" onclick="GetPageData(' + PageNumberArray[i] + ')" href="#">' + PageNumberArray[i] + ' &nbsp;&nbsp;</a>'
+        }
+        template = template + numberingLoop + '<a href="#" onclick="GetPageData(' + ForwardOne + ')" ><i class="glyphicon glyphicon-forward"></i></a></li>' +
+            '<li class="next"><a href="#" onclick="GetPageData(' + LastPage + ')">Last&nbsp;<i class="fa fa-fast-forward"></i></a></li></ul>';
+        $("#paged").append(template);
+        $('#selectedId').change(function () {
+            GetPageData(1, $(this).val());
+        });
+    }
+
+    function lazyLoad() {
+        $('.lazy-img').each(function () {
+                $(this).attr('src', $(this).data('src'));
+                $(this).removeClass('lazy-img');
+        })
+    };
+
+    var eventTimeout;
+    var eventThrottler = function () {
+        if (!eventTimeout) {
+            eventTimeout = setTimeout(function () {
+                eventTimeout = null;
+                lazyLoad();
+            }, 1000);
+        }
+    };
+
+    $(document).on('scroll', function () {
+        eventThrottler();
+    });
+</script>

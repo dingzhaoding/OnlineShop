@@ -1,29 +1,28 @@
 ﻿@model ShopFilip.Models.Register
+    <link rel="stylesheet" type="text/css" href="~/css/Login-Register.css">
+    <h2 class="MainText">Login</h2>
+    <form method="post" asp-controller="Account" asp-action="Login" asp-route-returnurl="@Model.ReturnUrl" class="Login">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <label asp-for="Username" class="control-label"></label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username"></span>
+        </div>
 
+        <div>
 
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password"></span>
+        </div>
 
-<h2 class="MainText">Login</h2>
-<link rel="stylesheet" type="text/css" href="~/css/LoginAndRegister.css">
-<form method="post" asp-controller="Account" asp-action="Login" asp-route-returnurl="@Model.ReturnUrl" class="Login">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div>
-        <label asp-for="Username" class="control-label"></label>
-        <input asp-for="Username" class="form-control" />
-        <span asp-validation-for="Username"></span>
-    </div>
-        
-    <div>
-
-        <label asp-for="Password" class="control-label"></label>
-        <input asp-for="Password" class="form-control" />
-        <span asp-validation-for="Password"></span>
-    </div>
-
-    <div>
-        <label asp-for="RememberMe" class="control-label"></label>
-        <input asp-for="RememberMe" />
-        <span asp-validation-for="RememberMe"></span>
-    </div>
-    <input type="submit" value="Login" class="btn btn-default button" />
-</form>
+        <div>
+            <label asp-for="RememberMe" class="control-label"></label>
+            <input asp-for="RememberMe" />
+            <span asp-validation-for="RememberMe"></span>
+        </div>
+        <div>
+            <input type="submit" value="Login" class="btn btn-default" id="#button-login-register"/>
+        </div>
+    </form>
 

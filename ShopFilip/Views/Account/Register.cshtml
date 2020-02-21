@@ -2,9 +2,9 @@
 @{
     ViewBag.Title = "Register";
 }
-<link rel="stylesheet" type="text/css" href="~/css/LoginAndRegister.css">
+<link rel="stylesheet" type="text/css" href="~/css/Login-Register.css">
 
-<h1 class="MainText">Register</h1>
+<h2 class="MainText">Register</h2>
 <form method="post" asp-controller="Account" asp-action="Register" class="Login">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div>
@@ -38,6 +38,6 @@
         <span asp-validation-for="ConfirmPassword"></span>
     </div>
     <div >
-        <input type="submit" value="Register" class="btn btn-default button" />
+        <input type="submit" value="Register" class="btn btn-default" id="button-login-register" />
     </div>
 </form>

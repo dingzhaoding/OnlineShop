@@ -15,7 +15,11 @@ h1 {
     height: 60%;
     width: 100%;
 }
-/* 	Product details  */
+.cart-btn{
+    color:black;
+}
+
+
 .product-details {
     position: relative;
     text-align: left;
@@ -52,14 +56,13 @@ h1 {
         margin: 0;
         animation: chan-sh 6s ease infinite;
     }
+
 #container .product-details > p {
     font-family: 'Farsan', cursive;
     text-align: center;
     font-size: 20px;
     color: white;
 }
-
-/* control */
 
 .control {
     display: flex;
@@ -72,7 +75,7 @@ h1 {
 .btn {
     transform: translateY(0px);
     transition: 0.3s linear;
-    background: #49C608;
+    background: white;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -80,16 +83,21 @@ h1 {
     overflow: hidden;
     cursor: pointer;
     outline: none;
-    border: none;
-    color: #eee;
+    border: 1px solid #434444;
     padding: 0;
     margin: 0;
     width: 140px;
+    color: white;
 }
 
-.btn:hover {
-    transform: translateY(-4px);
-}
+    .btn:hover {
+        transform: translateY(-4px);
+        background: #434444;
+    }
+
+        .btn:hover > .cart-btn {
+            color: white;
+        }
 
 .btn span {
     font-family: 'Farsan', cursive;
