@@ -15,8 +15,7 @@ namespace ShopFilip.Migrations
                               UserManager<ApplicationUser> userManager,
                               RoleManager<ApplicationRole> roleManager)
         {
-            //context.Database.EnsureCreated();
-
+            context.Database.EnsureCreated();
             String adminId1 = "";
             String adminId2 = "";
 
@@ -43,7 +42,6 @@ namespace ShopFilip.Migrations
                 {
                     UserName = "aa@aa.aa",
                     Email = "aa@aa.aa",
-
                 };
 
                 var result = await userManager.CreateAsync(user);
@@ -87,7 +85,6 @@ namespace ShopFilip.Migrations
                 if (result.Succeeded)
                 {
                     await userManager.AddPasswordAsync(user, password);
-                    //await userManager.AddToRoleAsync(user, role2);
                     await userManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), role2));
                 }
             }
@@ -105,7 +102,6 @@ namespace ShopFilip.Migrations
                 if (result.Succeeded)
                 {
                     await userManager.AddPasswordAsync(user, password);
-                    //await userManager.AddToRoleAsync(user, role2);
                     await userManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), role2));
                 }
             }

@@ -2,23 +2,40 @@
 @{
     Layout = "_Layout";
 }
-
 <link rel="stylesheet" type="text/css" href="~/css/Product.css">
-
 <div class="modal-body row">
     <div class="col-md-6">
         <h1>@Model.Name</h1>
         <p class="information">@Model.Description</p>
-        <div class="control">
-            <button class="btn">
-                <span class="price">@Model.Price$</span>
-                <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true">🛒</i></span>
-                <a asp-controller="cart" asp-action="buy" asp-route-id="@Model.Id" class="cart-btn">Buy!</a>
-            </button>
-        </div>
+        @if (Model.Quantity == 0)
+        {
+            <h4 style="text-align:center;padding-bottom:10px">Brak sztuk w magazynie</h4>
+            <div class="control">
+                <button class="btn buyButton" disabled>
+                    <span class="price">@Model.Price$</span>
+                    <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true">🛒</i></span>
+                    <a href="#" class="cart-btn">Buy!</a>
+                </button>
+            </div>
+        }
+        else
+        {
+            @if (Model.Quantity < 3)
+            {
+                <h4 style="color:red;text-align:center;">Ostatnie sztuki modelu</h4>
+            }
+            <div class="control">
+                <button class="btn buyButton">
+                    <span class="price">@Model.Price$</span>
+                    <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true">🛒</i></span>
+                    <a asp-controller="cart" asp-action="buy" asp-route-id="@Model.Id" class="cart-btn">Buy!</a>
+                </button>
+            </div>
+        }
+
     </div>
     <div class="col-md-6 photoContainer">
-        <img class="product-image" src="https://drive.google.com/uc?id=@Model.Photo" alt="https://drive.google.com/uc?id=1Lrk-1DgiTp2yyOR0Vg6-BqI-PDu7eYDa">
+        <img class="product-image" src="@Html.DisplayFor(modelItem => Model.Photo)" alt="">
     </div>
 </div>
 

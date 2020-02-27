@@ -13,6 +13,7 @@ body {
     display: flex;
     flex-wrap:wrap;
 }
+
 #products .card:hover {
     background: #fff;
     box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
@@ -34,9 +35,6 @@ body {
 .container1 {
     color: grey;
     padding-top: 50px;
-}
-
-h1 {
 }
 
 .product-grid {

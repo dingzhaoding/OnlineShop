@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopFilip.Models;
 
 namespace ShopFilip.Migrations
 {
     [DbContext(typeof(EfDbContext))]
-    partial class EfDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200226071906_secondMigration")]
+    partial class secondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,8 +158,6 @@ namespace ShopFilip.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("Name");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
@@ -170,15 +170,7 @@ namespace ShopFilip.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("PostalCode");
-
                     b.Property<string>("SecurityStamp");
-
-                    b.Property<string>("Street");
-
-                    b.Property<string>("Surname");
-
-                    b.Property<string>("Town");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -252,13 +244,9 @@ namespace ShopFilip.Migrations
 
                     b.Property<string>("Atribute");
 
-                    b.Property<int?>("ProductId");
-
                     b.Property<string>("Value");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductAtributes");
                 });
@@ -358,13 +346,6 @@ namespace ShopFilip.Migrations
                     b.HasOne("ShopFilip.Models.Order")
                         .WithMany("Products")
                         .HasForeignKey("OrderID");
-                });
-
-            modelBuilder.Entity("ShopFilip.Models.ProductAtribute", b =>
-                {
-                    b.HasOne("ShopFilip.Models.Product")
-                        .WithMany("ProductAtribute")
-                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

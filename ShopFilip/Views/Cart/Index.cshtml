@@ -5,6 +5,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 <link rel="stylesheet" type="text/css" href="~/css/ShoppingCart.css">
+<link rel="stylesheet" type="text/css" href="~/css/Product.css">
 <h3 class="title">Shopping Cart</h3>
 <table cellpadding="2" cellspacing="2" border="1">
     <tr>
@@ -20,7 +21,7 @@
         <tr>
             <td><a asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.Id">Remove</a></td>
             <td>@item.Product.Name</td>
-            <td><img class="photoInCart" src="https://drive.google.com/uc?id=@item.Product.Photo" alt="[Photo]" /></td>
+            <td><img class="photoInCart" src="@item.Product.Photo" alt="" /></td>
             <td>@item.Product.Price</td>
             <td>@item.Quantity</td>
             <td>@(item.Product.Price * item.Quantity)</td>
@@ -33,21 +34,32 @@
         </td>
     </tr>
 </table>
-<div>
-    <button onclick="goBack()" class="button">Continue shoping</button>
-
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <form method="get" asp-controller="Cart" asp-action="myAction">
-            <input type="hidden" name="Price" value="@ViewBag.total" />
-            <input type="hidden" name="Id" value="@UserManager.GetUserId(User)" />
-            <input type="submit" class="button" value="Buy" />
-        </form>
-    }
-    else
-    {
-        <a asp-controller="Account" asp-action="Login" class="button">Buy</a>
-    }
+<div style="display:flex; width:100%">
+    <div style="width:50%;padding-top:10px;display:flex;justify-content:flex-start";>
+        <button class="btn buyButton" onclick="goBack()">
+            <span class="price">🔙</span>
+            <span class="shopping-cart"><a class="fa fa-shopping-cart" aria-hidden="true">⬅️</a></span>
+            <a class="cart-btn"  href="#">Back</a>
+        </button>
+    </div>
+    <div style="width:50%;padding-top:10px;display:flex;justify-content:flex-end">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <form method="get" asp-controller="Cart" asp-action="myAction">
+                <input type="hidden" name="Price" value="@ViewBag.total" />
+                <input type="hidden" name="Id" value="@UserManager.GetUserId(User)" />
+                <button class="btn buyButton" type="submit">
+                    <span class="price">💰</span>
+                    <span class="shopping-cart"><a class="fa fa-shopping-cart" aria-hidden="true">🛍️</a></span>
+                    <a class="cart-btn" c" href="#">Buy!</a>
+                </button>
+            </form>
+        }
+        else
+        {
+            <a asp-controller="Account" asp-action="Login" class="button">Buy</a>
+        }
+    </div>
 </div>
 <script>
     function goBack() {

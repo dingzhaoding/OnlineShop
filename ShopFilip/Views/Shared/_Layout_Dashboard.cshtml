@@ -23,18 +23,26 @@
               integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-   
-
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a style="background-color:white;color:black; border:black solid 1px"class="navbar-brand col-sm-3 col-md-2 mr-0" asp-controller="Home" asp-action="MainPage">Main Page</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" asp-controller="Admin" asp-action="Index">FW Admin Panel</a>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("MainPage", "Account", new { area = "" })" method="post" id="logoutForm">
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
+                </li>
+            </ul>
+        </form>
+        @*<a class="nav-link" href="#">Sign out</a>*@
+    </nav>
+    <main role="main">
+        @RenderBody()
+    </main>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>

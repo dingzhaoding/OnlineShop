@@ -72,7 +72,7 @@ h1 {
     bottom: 0;
 }
 /* the Button */
-.btn {
+.buyButton {
     transform: translateY(0px);
     transition: 0.3s linear;
     background: white;
@@ -90,60 +90,59 @@ h1 {
     color: white;
 }
 
-    .btn:hover {
+    .buyButton:hover {
         transform: translateY(-4px);
         background: #434444;
     }
 
-        .btn:hover > .cart-btn {
+        .buyButton:hover > .cart-btn {
             color: white;
         }
 
-.btn span {
-    font-family: 'Farsan', cursive;
-    transition: transform 0.3s;
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    margin: 0;
-}
+    .buyButton span {
+        font-family: 'Farsan', cursive;
+        transition: transform 0.3s;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        margin: 0;
+    }
 /* shopping cart icon */
-.btn .price, .shopping-cart {
-    background: #333;
-    border: 0;
-    margin: 0;
-}
+    .buyButton .price, .shopping-cart {
+        background: #333;
+        border: 0;
+        margin: 0;
+    }
 
-.btn .price {
-    transform: translateX(-50%);
-    padding-right: 15px;
-}
+    .buyButton .price {
+        transform: translateX(-50%);
+        padding-right: 15px;
+    }
 
 /* the Icon */
-.btn .shopping-cart {
-    transform: translateX(-100%);
-    position: absolute;
-    background: #333;
-    z-index: 1;
-    left: 0;
-    top: 0;
-
-}
+    .buyButton .shopping-cart {
+        transform: translateX(-100%);
+        position: absolute;
+        background: #333;
+        z-index: 1;
+        left: 0;
+        top: 0;
+    }
 
 /* buy */
-.btn .buy {
-    z-index: 3;
-    font-weight: bolder;
-}
+    .buyButton .buy {
+        z-index: 3;
+        font-weight: bolder;
+    }
 
-.btn:hover .price {
-    transform: translateX(-80%);
-}
+    .buyButton:hover .price {
+        transform: translateX(-80%);
+    }
 
-.btn:hover .shopping-cart {
-    transform: translateX(-20%);
-    padding-right: 15px;
-}
+    .buyButton:hover .shopping-cart {
+        transform: translateX(-15%);
+        padding-right: 15px;
+    }
 
 .photoContainer {
     width: 200px;

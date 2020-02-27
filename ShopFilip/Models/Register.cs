@@ -24,6 +24,11 @@ namespace ShopFilip.Models
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
 
+        public string PostalCode { get; set; }
+        public string Street { get; set; }
+        public string Town { get; set; }
+
+
         [DataType(DataType.Password), Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
 

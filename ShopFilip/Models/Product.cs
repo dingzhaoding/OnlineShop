@@ -22,5 +22,7 @@ namespace ShopFilip.Models
         public string Gender { get; set; }
 
         public string Description { get; set; }
+
+        public List<ProductAtribute> ProductAtribute { get; set; }
     }
 }

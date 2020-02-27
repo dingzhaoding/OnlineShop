@@ -1,0 +1,26 @@
+﻿@using ShopFilip.IdentityModels
+@model List<ApplicationUser>
+@{
+    Layout = "_Layout_Dashboard";
+}
+
+<h2>Section title</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

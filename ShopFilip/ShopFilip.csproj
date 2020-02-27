@@ -5,6 +5,27 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20190819160847_First.cs" />
+    <Compile Remove="Migrations\20190819160847_First.Designer.cs" />
+    <Compile Remove="Migrations\20190819204516_Products.cs" />
+    <Compile Remove="Migrations\20190819204516_Products.Designer.cs" />
+    <Compile Remove="Migrations\20190819204944_SecondProduct.cs" />
+    <Compile Remove="Migrations\20190819204944_SecondProduct.Designer.cs" />
+    <Compile Remove="Migrations\20190910050138_PrductPhoto.cs" />
+    <Compile Remove="Migrations\20190910050138_PrductPhoto.Designer.cs" />
+    <Compile Remove="Migrations\20190912124725_GenderAndDescriptin.cs" />
+    <Compile Remove="Migrations\20190912124725_GenderAndDescriptin.Designer.cs" />
+    <Compile Remove="Migrations\20200225183624_AddPrductValues.cs" />
+    <Compile Remove="Migrations\20200225183624_AddPrductValues.Designer.cs" />
+    <Compile Remove="Migrations\20200225185221_AddNewProductsData.cs" />
+    <Compile Remove="Migrations\20200225185221_AddNewProductsData.Designer.cs" />
+    <Compile Remove="Migrations\20200226063809_OrdersTable.cs" />
+    <Compile Remove="Migrations\20200226063809_OrdersTable.Designer.cs" />
+    <Compile Remove="Migrations\20200226070359_AddOrders.cs" />
+    <Compile Remove="Migrations\20200226070359_AddOrders.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.3.1" />
@@ -12,6 +33,16 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="wwwroot\1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Photos\IMG_0936.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

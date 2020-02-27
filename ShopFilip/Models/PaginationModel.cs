@@ -7,7 +7,7 @@ namespace ShopFilip.Models
 {
     public class PaginationModel
     {
-        public List<Product> Products { get; set; }
+        public List<Product> ProductsData { get; set; }
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
         public int RecordCount { get; set; }

@@ -1,4 +1,5 @@
-﻿using ShopFilip.Models;
+﻿using ShopFilip.IdentityModels;
+using ShopFilip.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace ShopFilip.Helpers
                 Photo = model.Photo,
                 Gender = model.Gender,
                 Description = model.Description,
+                Quantity=model.Quantity,
             };
             return viewModel;
         }
@@ -48,6 +50,15 @@ namespace ShopFilip.Helpers
                 Description = viewModel.Description,
             };
             return model;
+        }
+
+        public static UsersViewModel MapUsersToViewModel(IEnumerable<ApplicationUser> users)
+        {
+            UsersViewModel viewModel = new UsersViewModel()
+            {
+                Name = users.First().UserName,
+            };
+            return viewModel;
         }
     }
 }

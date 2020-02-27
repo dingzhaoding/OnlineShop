@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopFilip.Models;
 
 namespace ShopFilip.Migrations
 {
     [DbContext(typeof(EfDbContext))]
-    partial class EfDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200226071749_firstMigration")]
+    partial class firstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,8 +158,6 @@ namespace ShopFilip.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("Name");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
@@ -170,15 +170,7 @@ namespace ShopFilip.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("PostalCode");
-
                     b.Property<string>("SecurityStamp");
-
-                    b.Property<string>("Street");
-
-                    b.Property<string>("Surname");
-
-                    b.Property<string>("Town");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -198,23 +190,6 @@ namespace ShopFilip.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ShopFilip.Models.Order", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("DateOfOrder");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("ShopFilip.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -229,8 +204,6 @@ namespace ShopFilip.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("OrderID");
-
                     b.Property<string>("Photo");
 
                     b.Property<int>("Price");
@@ -239,28 +212,7 @@ namespace ShopFilip.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderID");
-
                     b.ToTable("ProductsData");
-                });
-
-            modelBuilder.Entity("ShopFilip.Models.ProductAtribute", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Atribute");
-
-                    b.Property<int?>("ProductId");
-
-                    b.Property<string>("Value");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductAtributes");
                 });
 
             modelBuilder.Entity("ShopFilip.Models.Register", b =>
@@ -344,27 +296,6 @@ namespace ShopFilip.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ShopFilip.Models.Order", b =>
-                {
-                    b.HasOne("ShopFilip.IdentityModels.ApplicationUser")
-                        .WithMany("OrdersList")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("ShopFilip.Models.Product", b =>
-                {
-                    b.HasOne("ShopFilip.Models.Order")
-                        .WithMany("Products")
-                        .HasForeignKey("OrderID");
-                });
-
-            modelBuilder.Entity("ShopFilip.Models.ProductAtribute", b =>
-                {
-                    b.HasOne("ShopFilip.Models.Product")
-                        .WithMany("ProductAtribute")
-                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

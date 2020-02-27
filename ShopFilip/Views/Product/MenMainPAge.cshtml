@@ -36,7 +36,7 @@
         $.getJSON("/Product/GetPaggedData", { SearchBy: searchBy, SearchValue: searchValue, pageNumber: pageNum, pageSize: pageSize }, function (response) {
             var rowData = "";
             for (var i = 0; i < response.data.length; i++) {
-                rowData = rowData + '<div class="col-md-4"> <div class="card rounded"> <div class="card-image" > <img class="img-fluid lazy-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://drive.google.com/uc?id=' + response.data[i].photo +'" alt="" /> </div> <div class="card-image-overlay m-auto"> <span class="card-detail-badge">' + response.data[i].price +' zł</span> </div> <div class="card-body text-center"> <div class="ad-title m-auto"> <h5>' + response.data[i].name +'</h5> </div> <a href="@Url.Action("Product", "Product", new { id= "-1" })" class="btn buy">KUP TERAZ</a> </div> </div></div>';
+                rowData = rowData + '<div class="col-md-4"> <div class="card rounded"> <div class="card-image" > <img class="img-fluid lazy-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="' + response.data[i].photo +'" alt="" /> </div> <div class="card-image-overlay m-auto"> <span class="card-detail-badge">' + response.data[i].price +' zł</span> </div> <div class="card-body text-center"> <div class="ad-title m-auto"> <h5>' + response.data[i].name +'</h5> </div> <a href="@Url.Action("Product", "Product", new { id= "-1" })" class="btn buy">KUP TERAZ</a> </div> </div></div>';
                 rowData = rowData.replace("-1", response.data[i].id);
             }
             $("#products").append(rowData).fadeIn(400);

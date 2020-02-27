@@ -12,6 +12,7 @@ using System.Text;
 using static ShopFilip.Helpers.DataPayU;
 using Newtonsoft.Json;
 using System.Net;
+using ShopFilip.IdentityModels;
 
 namespace OnlineShop.Controllers
 {
@@ -41,7 +42,7 @@ namespace OnlineShop.Controllers
         {
             if (SesionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart") == null)
             {
-                var productModel = await _context.Products.FindAsync(id);
+                var productModel = await _context.ProductsData.FindAsync(id);
                 List<Item> cart = new List<Item>();
                 cart.Add(new Item { Product = productModel, Quantity = 1 });
                 SesionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
@@ -56,7 +57,7 @@ namespace OnlineShop.Controllers
                 }
                 else
                 {
-                    var productModel = await _context.Products.FindAsync(id);
+                    var productModel = await _context.ProductsData.FindAsync(id);
 
                     cart.Add(new Item { Product = productModel, Quantity = 1 });
                 }
@@ -97,13 +98,13 @@ namespace OnlineShop.Controllers
             }
             var userProp = await _context.Users.FindAsync(id);
             
-            await GetAccessTokenAsync(userProp.Id, Price);
+            await GetAccessTokenAsync(userProp, Price);
            
             return Redirect(Uri);
         }
        
 
-        public async Task GetAccessTokenAsync(string id, int Price)
+        public async Task GetAccessTokenAsync(ApplicationUser user, int Price)
         {
             using (var httpClient = new HttpClient())
             {
@@ -117,7 +118,8 @@ namespace OnlineShop.Controllers
                         var jsonString = await response.Content.ReadAsStringAsync();
                         var objResponse1 = JsonConvert.DeserializeObject<RootObject2>(jsonString);
                         accessToken = objResponse1.access_token;
-                        //await Order(userProp.Email, Price);
+
+                        await Order(user.Email, Price);
                         Response.Redirect(Uri);
                     }
                     catch (Exception)

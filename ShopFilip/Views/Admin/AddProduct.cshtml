@@ -1,8 +1,71 @@
 ﻿@model ShopFilip.Models.Product
 
-<h1>Add Products</h1>
+<h1>Add ProductsData</h1>
+@*<style>
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 
-<form method="post" asp-controller="Admin" asp-action="AddProduct">
+        /* Hide the browser's default radio button */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+    /* Create a custom radio button */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .container .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+    }*@
+@*</style>*@
+<form method="post" asp-controller="Admin" asp-action="AddProduct" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -22,32 +85,93 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
 
+
             <div class="form-group">
-                <label asp-for="Gender" class="control-label"> </label>
-                <input asp-for="Gender" list="productName" class="form-control" />
-                <datalist id="productName">
-                    <option value="Men">Men</option>
-                    <option value="Woman">Woman</option>
-                </datalist>
-                <span asp-validation-for="Gender" class="text-danger"></span>
+                @*<label asp-for="Gender" class="control-label"> </label>
+            <input asp-for="Gender" list="productName" class="form-control" />*@
+                <label class="container">
+                    Man
+                    <input type="radio" checked="checked" name="gender" value="man">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Woman
+                    <input type="radio" name="gender" value="woman">
+                    <span class="checkmark"></span>
+                </label>
+                @*<span asp-validation-for="Gender" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <h4>Rozmiary</h4>
+
+                <label class="container">
+                    M
+                    <input type="checkbox" checked="checked" name="size" value="M">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    L
+                    <input type="checkbox" name="size" value="L">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    XL
+                    <input type="checkbox" name="size" value="XL">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    XXL
+                    <input type="checkbox" name="size" value="XXL">
+                    <span class="checkmark"></span>
+                </label>
             </div>
 
             <div class="form-group">
+                <h4>Grupa</h4>
+
+                <label class="container">
+                    Koszule
+                    <input type="radio" checked="checked" name="group" value="Koszule">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Spodnie
+                    <input type="radio" name="group" value="Spodnie">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    T-Shirt
+                    <input type="radio" name="group" value="TShirt">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Kurtki
+                    <input type="radio" name="group" value="Kurtki">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            @*<div class="form-group">
                 <label asp-for="Group" class="control-label"></label>
                 <input asp-for="Group" class="form-control" />
                 <span asp-validation-for="Group" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div>*@
+            @*<div class="form-group">
                 <label asp-for="Photo" class="control-label"></label>
                 <input asp-for="Photo" class="form-control" />
                 <span asp-validation-for="Photo" class="text-danger"></span>
-            </div>
+            </div>*@
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="Description" class="control-label">Comment:</label>
                 <textarea asp-for="Description" class="form-control" rows="5" id="comment"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="file" name="pic" /><br />
+                <input type="text" name="fullName" /><br />
+                @*<input type="submit" value="GO" />*@
             </div>
         </div>
         <div class="form-group">
@@ -56,8 +180,6 @@
     </div>
 </form>
 <form method="post" asp-controller="Admin" asp-action="ShowFields" enctype="multipart/form-data">
-    <input type="file" name="pic" /><br/>
-    <input type="text" name="fullName" /><br/>
-    <input type="submit" value="GO"/>
+ 
 </form>
 

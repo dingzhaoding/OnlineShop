@@ -29,7 +29,7 @@ namespace OnlineShop.Controllers
         {
             if (id != 0)
             {
-                ProductViewModel viewModel = ViewModelFactory.MapProductToViewModel(_context.Products.FirstOrDefault(x => x.Id == id));
+                ProductViewModel viewModel = ViewModelFactory.MapProductToViewModel(_context.ProductsData.FirstOrDefault(x => x.Id == id));
                 return View(viewModel);
             }
             return View();
@@ -43,25 +43,25 @@ namespace OnlineShop.Controllers
 
         public async Task<IActionResult> Show(string genre)
         {
-            List<Product> products;
+            List<Product> ProductsData;
             if (!string.IsNullOrEmpty(genre))
             {
-                products = await _context.Products.Where(m => string.Equals(m.Name, genre, StringComparison.InvariantCultureIgnoreCase)).ToListAsync();
+                ProductsData = await _context.ProductsData.Where(m => string.Equals(m.Name, genre, StringComparison.InvariantCultureIgnoreCase)).ToListAsync();
             }
             else
             {
-                products = await _context.Products.ToListAsync();
+                ProductsData = await _context.ProductsData.ToListAsync();
             }
-            if (products == null)
+            if (ProductsData == null)
             {
                 return NotFound();
             }
             ViewData["Genre"] = genre;
-            return View(products);
+            return View(ProductsData);
         }
 
         [Route("MenMainPage")]
-        public async Task<IActionResult> MenMainPage(int? pageNumber)
+        public IActionResult MenMainPage(int? pageNumber)
         {
             return View();
         }
@@ -69,28 +69,28 @@ namespace OnlineShop.Controllers
         [Route("WomanMainPage")]
         public async Task<IActionResult> WomanMainPage()
         {
-            return View(await _context.Products.ToListAsync());
+            return View(await _context.ProductsData.ToListAsync());
         }
 
         //public async Task<IActionResult> ButtonClick(int? pageNumber)
         //{
         //    string fruit = HttpContext.Request.Form["testSelect"];
-        //    var students = from s in _context.Products
+        //    var students = from s in _context.ProductsData
         //                   select s;
         //    int pageSize = 1;
         //    return View(await PaginatedList<Product>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
-        //    //return View(await _context.Products.ToListAsync());
+        //    //return View(await _context.ProductsData.ToListAsync());
         //}
 
         public ActionResult GetPaggedData(string SearchBy, string SearchValue, int pageNumber = 1, int pageSize = 2)
         {
-            //List<Product> listData = _context.Products.ToList();
+            //List<Product> listData = _context.ProductsData.ToList();
             List<Product> list = new List<Product>();
             if (SearchBy == "Name")
             {
                 try
                 {
-                    list.AddRange(from o in _context.Products
+                    list.AddRange(from o in _context.ProductsData
                             where o.Name == SearchValue || SearchValue == null
                             select o);
                 }
@@ -103,13 +103,13 @@ namespace OnlineShop.Controllers
             }
             else if(SearchValue=="")
             {
-                list.AddRange(_context.Products.ToList());
+                list.AddRange(_context.ProductsData.ToList());
                 var pagedData = Pagination.PagedResult(list, pageNumber, pageSize);
                 return Json(pagedData);
             }
             else
             {
-                list.AddRange(from o in _context.Products
+                list.AddRange(from o in _context.ProductsData
                               where o.Group == SearchValue || SearchValue == null
                               select o);
                 var pagedData = Pagination.PagedResult(list, pageNumber, pageSize);
@@ -125,7 +125,7 @@ namespace OnlineShop.Controllers
         //    {
         //        try
         //        {
-        //            ProdList = (from o in _context.Products
+        //            ProdList = (from o in _context.ProductsData
         //                        where o.Name == SearchValue || SearchValue==null
         //                        select o);
         //        }
@@ -137,7 +137,7 @@ namespace OnlineShop.Controllers
         //    }
         //    else
         //    {
-        //        ProdList = (from o in _context.Products
+        //        ProdList = (from o in _context.ProductsData
         //                        where o.Group== SearchValue || SearchValue==null
         //                        select o);
         //        return Json(await PaginatedList<Product>.CreateAsync(ProdList.AsNoTracking(), pageNumber ?? 1, pageSize));
@@ -150,7 +150,7 @@ namespace OnlineShop.Controllers
             PaginationModel model = new PaginationModel();
             model.PageIndex = pageIndex;
             model.PageSize = 10;
-            model.RecordCount = _context.Products.Count();
+            model.RecordCount = _context.ProductsData.Count();
             int startIndex = (pageIndex - 1) * model.PageSize;
 
             switch (sortName)
@@ -159,7 +159,7 @@ namespace OnlineShop.Controllers
                 case "":
                     if (sortDirection == "ASC")
                     {
-                        model.Products = (from customer in _context.Products
+                        model.ProductsData = (from customer in _context.ProductsData
                                           select customer)
                                 .OrderBy(customer => customer.Id)
                                 .Skip(startIndex)
@@ -167,7 +167,7 @@ namespace OnlineShop.Controllers
                     }
                     else
                     {
-                        model.Products = (from customer in _context.Products
+                        model.ProductsData = (from customer in _context.ProductsData
                                           select customer)
                                 .OrderByDescending(customer => customer.Id)
                                 .Skip(startIndex)
@@ -177,7 +177,7 @@ namespace OnlineShop.Controllers
                 case "ContactName":
                     if (sortDirection == "ASC")
                     {
-                        model.Products = (from customer in _context.Products
+                        model.ProductsData = (from customer in _context.ProductsData
                                           select customer)
                                 .OrderBy(customer => customer.Group)
                                 .Skip(startIndex)
@@ -185,7 +185,7 @@ namespace OnlineShop.Controllers
                     }
                     else
                     {
-                        model.Products = (from customer in _context.Products
+                        model.ProductsData = (from customer in _context.ProductsData
                                           select customer)
                                 .OrderByDescending(customer => customer.Group)
                                 .Skip(startIndex)
@@ -195,7 +195,7 @@ namespace OnlineShop.Controllers
                 case "City":
                     if (sortDirection == "ASC")
                     {
-                        model.Products = (from customer in _context.Products
+                        model.ProductsData = (from customer in _context.ProductsData
                                           select customer)
                                 .OrderBy(customer => customer.Name)
                                 .Skip(startIndex)
@@ -203,7 +203,7 @@ namespace OnlineShop.Controllers
                     }
                     else
                     {
-                        model.Products = (from customer in _context.Products
+                        model.ProductsData = (from customer in _context.ProductsData
                                           select customer)
                                 .OrderByDescending(customer => customer.Name)
                                 .Skip(startIndex)
